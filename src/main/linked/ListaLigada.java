@@ -12,13 +12,32 @@ public class ListaLigada implements EstruturaElementar{
 
     @Override
     public boolean buscaElemento(int valor) {
-        
+        No elem = this; 
+
+        while (elem != null) {
+            if (elem.getValor() == valor) {
+                return true; 
+            }
+            elem = elem.getProximo();
+        }
+    
+        return false; 
+      
+     
     }
 
     @Override
     public int buscaIndice(int valor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscaIndice'");
+        No atual = head;
+        int contador = 0;
+
+        while (atual != null) {
+            if (contador == indice) {
+                return atual.getValor();
+            }
+            atual = atual.getProximo();
+            contador++;
+        }
     }
 
     @Override
