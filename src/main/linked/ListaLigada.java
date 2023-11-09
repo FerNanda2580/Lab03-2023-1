@@ -4,7 +4,7 @@ import list.EstruturaElementar;
 
 public class ListaLigada implements EstruturaElementar{
 
-    private No cabeca;
+    private No cabeca == null;
 
     public ListaLigada() {
 
@@ -12,8 +12,7 @@ public class ListaLigada implements EstruturaElementar{
 
     @Override
     public boolean buscaElemento(int valor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscaElemento'");
+        
     }
 
     @Override
@@ -60,8 +59,14 @@ public class ListaLigada implements EstruturaElementar{
 
     @Override
     public void insereInicio(int valor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'insereInicio'");
+       if (cabeca == null);{
+           cabeca = new No(valor);
+        }
+         else {
+            No n = new No(valor);
+            n.setProximo (this.cabeca);
+            this.cabeca = n;
+       }
     }
 
     @Override
