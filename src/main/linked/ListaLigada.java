@@ -114,8 +114,19 @@ public class ListaLigada implements EstruturaElementar{
 
     @Override
     public void removeFim() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeFim'");
+        No novonoFim = new No(valor);
+
+        if (inicio == null) {
+            inicio = novonoFim;
+        } else {
+            No atual = inicio;
+            while (atual.getProximo() != null) {
+                atual = atual.getProximo();
+            }
+            atual.setProximo(novonoFim);
+        }
+        
+        
     }
     
 }
