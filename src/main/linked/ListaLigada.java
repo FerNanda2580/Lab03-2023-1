@@ -4,15 +4,18 @@ import list.EstruturaElementar;
 
 public class ListaLigada implements EstruturaElementar{
 
-    private No cabeca == null;
+    private No cabeca;
+    private No cauda;
+    
 
     public ListaLigada() {
+        cabeca = null;
 
     }
 
     @Override
     public boolean buscaElemento(int valor) {
-        No elem = this; 
+        No elem = cabeca; 
 
         while (elem != null) {
             if (elem.getValor() == valor) {
@@ -28,7 +31,7 @@ public class ListaLigada implements EstruturaElementar{
 
     @Override
     public int buscaIndice(int valor) {
-        No atual = head;
+        No atual = cabeca;
         int contador = 0;
 
         while (atual != null) {
@@ -37,94 +40,85 @@ public class ListaLigada implements EstruturaElementar{
             }
             atual = atual.getProximo();
             contador++;
-        }
+        } 
+    
     }
 
     @Override
     public int minimo() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'minimo'");
+       
     }
 
     @Override
     public int maximo() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'maximo'");
+       
     }
 
     @Override
     public int predecessor(int valor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'predecessor'");
+       
     }
 
     @Override
     public int sucessor(int valor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'sucessor'");
+        
     }
 
     @Override
     public void insereElemento(int valor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'insereElemento'");
+        
     }
 
     @Override
     public void insereElementoPosicao(int valor, int buscaIndice) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'insereElementoPosicao'");
+       
     }
 
     @Override
     public void insereInicio(int valor) {
-       if (cabeca == null);{
-           cabeca = new No(valor);
-        }
-         else {
+            if (this.cabeca == null) {
+            this.cabeca = new No(valor);}
+        else {
             No n = new No(valor);
-            n.setProximo (this.cabeca);
+            n.setProximo(this.cabeca);
             this.cabeca = n;
-       }
+        }
+
     }
 
     @Override
     public void insereFim(int valor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'insereFim'");
+        No noFim = new No(valor);
+
+        if (this.cabeca == null) {
+            this.cabeca = new No(valor);
+            this.cauda = new No(valor);}
+        else {
+            this.cauda.setProximo(noFim);
+            this.cauda = noFim;
+        }
+        
+  
     }
 
     @Override
     public void remove(int valor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'remove'");
+       
     }
 
     @Override
     public void removeIndice(int indice) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeIndice'");
+       
     }
 
     @Override
     public void removeInicio() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeInicio'");
+        
     }
 
     @Override
     public void removeFim() {
-        No novonoFim = new No(valor);
-
-        if (inicio == null) {
-            inicio = novonoFim;
-        } else {
-            No atual = inicio;
-            while (atual.getProximo() != null) {
-                atual = atual.getProximo();
-            }
-            atual.setProximo(novonoFim);
-        }
+       
         
         
     }
