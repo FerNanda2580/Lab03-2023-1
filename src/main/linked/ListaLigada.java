@@ -5,7 +5,7 @@ import list.EstruturaElementar;
 public class ListaLigada implements EstruturaElementar{
 
     private No cabeca;
-    private No cauda;
+    
     
 
     public ListaLigada() {
@@ -31,16 +31,22 @@ public class ListaLigada implements EstruturaElementar{
 
     @Override
     public int buscaIndice(int valor) {
-        No atual = cabeca;
-        int contador = 0;
+        if (cabeca == null) {
+            return -1;
+        } else {
+            int contador = 0;
+            No bus = cabeca;
 
-        while (atual != null) {
-            if (contador == indice) {
-                return atual.getValor();
+            while (bus != null) {
+                if (bus.getValor() == valor) {
+                    return contador;
+                }
+                bus = bus.getProximo();
+                contador++;
             }
-            atual = atual.getProximo();
-            contador++;
-        } 
+
+            return -1;
+        }
     
     }
 
@@ -88,17 +94,20 @@ public class ListaLigada implements EstruturaElementar{
 
     @Override
     public void insereFim(int valor) {
-        No noFim = new No(valor);
+        if (cabeca == null) {
+            cabeca = new No(valor);
+        } else {
+            No novoNo = new No(valor);
+            No nFim = cabeca;
 
-        if (this.cabeca == null) {
-            this.cabeca = new No(valor);
-            this.cauda = new No(valor);}
-        else {
-            this.cauda.setProximo(noFim);
-            this.cauda = noFim;
+            while (nFim.getProximo() != null) {
+                nFim = nFim.getProximo();
+            }
+
+            nFim.setProximo(novoNo);
         }
-        
   
+        
     }
 
     @Override
@@ -108,11 +117,30 @@ public class ListaLigada implements EstruturaElementar{
 
     @Override
     public void removeIndice(int indice) {
+        No rI = cabeca;
+        if (cabeca == null) {
+            cabeca = null;
+        }
+        int contador = 0;
+
+        while (rI != null) {
+            if (contador == indice) {
+                remove(indice);
+            }
+            rI = rI.getProximo();
+            contador++;
+
+        }
        
     }
 
     @Override
     public void removeInicio() {
+        if (cabeca == null) {
+            cabeca = null;
+        } else {
+            cabeca = cabeca.getProximo();
+        }
         
     }
 
