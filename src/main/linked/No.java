@@ -20,4 +20,9 @@ public class No {
     public void setProximo(No proximo) {
         this.proximo = proximo;
     }
+
+    public void setValor(int valor) {
+        this.valor = valor;
+    }
+    
 }

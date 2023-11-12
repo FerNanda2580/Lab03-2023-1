@@ -5,9 +5,11 @@ import list.EstruturaElementar;
 public class ListaLigada implements EstruturaElementar {
 
     private No cabeca;
+    
 
     public ListaLigada() {
         cabeca = null;
+        
 
     }
 
@@ -88,12 +90,43 @@ public class ListaLigada implements EstruturaElementar {
 
     @Override
     public int predecessor(int valor) {
+        No atual = cabeca;
+        No anterior = null;
+
+        while (atual != null) {
+            if (atual.getValor() == valor) {
+                if (anterior != null) {
+                    return anterior.getValor(); 
+                } else {
+                    return -1; 
+                }
+            }
+            anterior = atual;
+            atual = atual.getProximo();
+        }
+
+        return -1; 
 
 
     }
 
     @Override
     public int sucessor(int valor) {
+        No atual = cabeca;
+
+        while (atual != null) {
+            if (atual.getValor() == valor) {
+                if (atual.getProximo() != null) {
+                    return atual.getProximo().getValor(); // Valor do sucessor
+                } else {
+                    return -1; 
+                }
+            }
+            atual = atual.getProximo();
+        }
+
+        return -1; 
+        
 
     }
 
@@ -114,9 +147,28 @@ public class ListaLigada implements EstruturaElementar {
 
     @Override
     public void insereElementoPosicao(int valor, int buscaIndice) {
+        int contador = 0;
+        No local = cabeca;
+        No no2 = new No(valor);
         
-   
+        if(buscaIndice <= 0 ){
+            insereInicio(valor);
 
+        }else if (buscaIndice >= contador){
+            insereFim(valor);
+
+        }else{
+            for (int i = 0; i < buscaIndice -1; i++ ){
+                local = local.getProximo();
+            }
+            
+            no2.setProximo(local.getProximo());
+            local.setProximo(no2);
+            contador++;
+
+            
+        }
+      
     }
 
     @Override
@@ -135,6 +187,7 @@ public class ListaLigada implements EstruturaElementar {
     public void insereFim(int valor) {
         if (cabeca == null) {
             cabeca = new No(valor);
+           
         } else {
             No novoNo = new No(valor);
             No nFim = cabeca;
@@ -151,8 +204,7 @@ public class ListaLigada implements EstruturaElementar {
     @Override
     public void remove(int valor) {
         if (cabeca == null) {
-
-            return;
+            cabeca = null;
         } else if (cabeca.getValor() == valor) {
 
             cabeca = cabeca.getProximo();
@@ -171,7 +223,6 @@ public class ListaLigada implements EstruturaElementar {
                 remo.setProximo(remo.getProximo().getProximo());
             }
         }
-
     }
 
     @Override
@@ -207,6 +258,7 @@ public class ListaLigada implements EstruturaElementar {
     public void removeFim() {
         if (cabeca == null) {
             cabeca = null;
+            
 
         } else if (cabeca.getProximo() == null) {
             cabeca = null;
