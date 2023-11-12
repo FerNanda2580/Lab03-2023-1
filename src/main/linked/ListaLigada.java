@@ -147,27 +147,16 @@ public class ListaLigada implements EstruturaElementar {
 
     @Override
     public void insereElementoPosicao(int valor, int buscaIndice) {
-        int contador = 0;
-        No local = cabeca;
-        No no2 = new No(valor);
-        
-        if(buscaIndice <= 0 ){
-            insereInicio(valor);
-
-        }else if (buscaIndice >= contador){
-            insereFim(valor);
-
-        }else{
-            for (int i = 0; i < buscaIndice -1; i++ ){
-                local = local.getProximo();
-            }
-            
-            no2.setProximo(local.getProximo());
-            local.setProximo(no2);
-            contador++;
-
-            
+        No posicao = new No(valor);
+        if(buscaIndice == 0){
+            posicao.setProximo(this.cabeca);
+            this.cabeca = posicao;
         }
+        No atual = this.cabeca;
+        for (int i = 0; i <= buscaIndice - 1 && atual != null; i++){
+            atual = atual.getProximo();
+        }
+        atual = posicao;
       
     }
 
@@ -227,19 +216,20 @@ public class ListaLigada implements EstruturaElementar {
 
     @Override
     public void removeIndice(int indice) {
-        No rI = cabeca;
-        if (cabeca == null) {
-            cabeca = null;
+        No aux = null;
+        No atual = this.cabeca;
+        if(indice == 0){
+            this.cabeca = this.cabeca.getProximo();
+            return;
         }
-        int contador = 0;
-
-        while (rI != null) {
-            if (contador == indice) {
-                remove(indice);
-            }
-            rI = rI.getProximo();
-            contador++;
-
+        int pointer = 0;
+        while(atual != null && pointer < indice){
+            aux = atual;
+            atual = atual.getProximo();
+            pointer++;
+        }
+        if(atual != null){
+            aux.setProximo(atual.getProximo());
         }
 
     }
